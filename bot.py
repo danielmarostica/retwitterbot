@@ -21,11 +21,15 @@ __status__ = "Dev"
 
 
 # Get the access keys and tokens from the Heroku environment
-API_KEY = environ['API_KEY']
-API_SECRET_KEY = environ['API_SECRET_KEY']
-ACCESS_TOKEN = environ['ACCESS_TOKEN']
-ACCESS_TOKEN_SECRET = environ['ACCESS_TOKEN_SECRET']
+# API_KEY = environ['API_KEY']
+# API_SECRET_KEY = environ['API_SECRET_KEY']
+# ACCESS_TOKEN = environ['ACCESS_TOKEN']
+# ACCESS_TOKEN_SECRET = environ['ACCESS_TOKEN_SECRET']
 
+API_KEY = 'zEjuJOSHQnAAOIEnaTRfgmOYm'
+API_SECRET_KEY = 'omA90k2bIVWs0lSjCMYUZMmatndcmGWKZM8bEZZ47SCpiQmGRY'
+ACCESS_TOKEN = '2846086023-oak7bvA4rwywIKqS5SOHaCIPra2CtSpwwHVkquu'
+ACCESS_TOKEN_SECRET = 'XydOvWwrvvYDrMqHTaNsrLnMeY4pi8BmHCMEXVDxdiDeA'
 
 # This is the meat of the script that drives the twitterbot
 auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
@@ -42,9 +46,13 @@ for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
     try:
         tweet.retweet()
         print('Retweeted the tweet')
+        # Favorite the tweet
+        tweet.favorite()
+        print('Favorited the tweet')
+        # Follow the user who tweeted
+        tweet.user.follow()
+        print('Followed the user')
     except tweepy.TweepError as e:
         print(e.reason)
     except StopIteration:
         break
-        
-

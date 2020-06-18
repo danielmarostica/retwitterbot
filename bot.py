@@ -36,7 +36,29 @@ public_tweets = api.home_timeline()
 for tweet in public_tweets:
     print(tweet.text)
 
-search = "crispr"
+search = "corona"
+numberOfTweets = 1
+for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
+    try:
+        tweet.retweet()
+        print('Retweeted the tweet')
+    except tweepy.TweepError as e:
+        print(e.reason)
+    except StopIteration:
+        break
+        
+search = "coronga"
+numberOfTweets = 1
+for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
+    try:
+        tweet.retweet()
+        print('Retweeted the tweet')
+    except tweepy.TweepError as e:
+        print(e.reason)
+    except StopIteration:
+        break
+        
+search = "coronavirus"
 numberOfTweets = 1
 for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
     try:

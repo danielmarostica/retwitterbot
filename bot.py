@@ -37,7 +37,7 @@ for tweet in public_tweets:
     print(tweet.text)
 
 search = "coronga"
-numberOfTweets = 5
+numberOfTweets = 2
 for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
     try:
         tweet.retweet()
